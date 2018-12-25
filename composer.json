@@ -1,7 +1,7 @@
 {
     "name": "jackdou/php-fmt",
     "description": "php smart format script",
-    "type": "library tool",
+    "type": "library",
     "require": {
         "php": ">=7.0",
         "nikic/php-parser": "^4.1"
