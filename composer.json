@@ -1,0 +1,21 @@
+{
+    "name": "jackdou/php-fmt",
+    "description": "php smart format script",
+    "type": "library tool",
+    "require": {
+        "php": ">=7.0",
+        "nikic/php-parser": "^4.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jackdou",
+            "email": "jackdoujiang@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4":{
+            "Jackdou\\PhpFmt\\":"src/"
+        }
+    }
+}

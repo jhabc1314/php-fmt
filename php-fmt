@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__ . '../autoload.php')) {
+    require __DIR__ . '../autoload.php';
+} else {
+    require __DIR__ . '/vendor/autoload.php';
+}
+
+if (!empty($argv[1])) {
+    $waitFiles = [$argv[1]];
+} else {
+    $waitFiles = scandir('./');
+}
+
+if (strtolower(PHP_OS) == 'WINNT') {
+    $pwd = exec("dir");
+} else {
+    $pwd = exec("pwd");
+}
+
+try {
+    $fmt = new \Jackdou\PhpFmt\PhpFmt(new \Jackdou\PhpFmt\PhpFile($waitFiles, $pwd), new \Jackdou\PhpFmt\PhpCache());
+
+    $fmt->run();
+} catch (Throwable $exception) {
+
+    echo $exception->getMessage() . "\n";
+}
