@@ -17,5 +17,8 @@
         "psr-4":{
             "Jackdou\\PhpFmt\\":"src/"
         }
-    }
+    },
+    "bin":[
+        "php-fmt"
+    ]
 }
