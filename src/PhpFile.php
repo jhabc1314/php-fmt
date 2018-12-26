@@ -1,7 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: jiangheng
+ * file handle class.
+ * User: jackdou
  * Date: 18-12-25
  * Time: 下午3:09
  */

@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * file format class.
+ * User: jackdou
+ * Date: 18-12-25
+ * Time: 下午3:09
+ */
 namespace Jackdou\PhpFmt;
 
 use PhpParser\Error;
@@ -26,6 +31,11 @@ class PhpFmt
     {
         $files = $this->phpFile->getFiles();
 
+        if (empty($files)) {
+            echo "no php script file found\n";
+            return;
+        }
+
         foreach ($files as $file) {
 
             $mtime = filemtime($file);
@@ -33,16 +43,27 @@ class PhpFmt
             $originMtime = $this->phpCache->getCache($file);
 
             if ($originMtime === 0 || $originMtime < $mtime) {
-                $this->parse($file);
-                clearstatcache();
-                $mtime = filemtime($file);
-                $this->phpCache->setCache($file, $mtime);
+
+                if ($this->parse($file)) {
+
+                    clearstatcache();
+
+                    $mtime = filemtime($file);
+
+                    $this->phpCache->setCache($file, $mtime);
+
+                    echo "$file parse success\n";
+                }
             }
         }
 
     }
 
-    private function parse(string $file)
+    /**
+     * @param string $file
+     * @return bool
+     */
+    private function parse(string $file) :bool
     {
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
@@ -53,12 +74,15 @@ class PhpFmt
         try {
             $ast = $parser->parse($code);
         } catch (Error $error) {
-            echo "Parse error: {$error->getMessage()}\n";
-            return;
+            echo "$file Parse error: {$error->getMessage()}\n";
+            return false;
         }
 
         $prettyPrinter = new PrettyPrinter\Standard();
+
         file_put_contents($file, $prettyPrinter->prettyPrintFile($ast));
+
+        return true;
     }
 }
 

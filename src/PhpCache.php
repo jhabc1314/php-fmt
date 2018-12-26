@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * file cache class.
+ * User: jackdou
+ * Date: 18-12-25
+ * Time: 下午3:09
+ */
 namespace Jackdou\PhpFmt;
 
 class PhpCache
@@ -12,7 +18,7 @@ class PhpCache
     {
 
         if (!file_exists($this->cacheFile)) {
-
+            
             file_put_contents($this->cacheFile, '');
 
         } else {

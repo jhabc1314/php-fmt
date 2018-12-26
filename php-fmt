@@ -19,11 +19,15 @@ if (strtolower(PHP_OS) == 'WINNT') {
     $pwd = exec("pwd");
 }
 
+echo date('H:i:s') . " php format start...\n";
+
 try {
     $fmt = new \Jackdou\PhpFmt\PhpFmt(new \Jackdou\PhpFmt\PhpFile($waitFiles, $pwd), new \Jackdou\PhpFmt\PhpCache());
 
     $fmt->run();
 } catch (Throwable $exception) {
-
+    echo "oops,php format error,message:\n";
     echo $exception->getMessage() . "\n";
 }
+
+echo date('H:i:s') . " php format end...\n";
