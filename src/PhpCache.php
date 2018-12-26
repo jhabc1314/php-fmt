@@ -18,7 +18,7 @@ class PhpCache
     {
 
         if (!file_exists($this->cacheFile)) {
-            
+            mkdir(__DIR__ . "/cache", 0766);
             file_put_contents($this->cacheFile, '');
 
         } else {
