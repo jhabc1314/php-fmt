@@ -36,6 +36,8 @@ class PhpFmt
             return;
         }
 
+        $notParse = 0;
+
         foreach ($files as $file) {
 
             $mtime = filemtime($file);
@@ -54,7 +56,14 @@ class PhpFmt
 
                     echo "$file parse success\n";
                 }
+            } else {
+                $notParse++;
             }
+        }
+
+        if ($notParse == count($files)) {
+            echo "no file need format\n";
+            return;
         }
 
     }
