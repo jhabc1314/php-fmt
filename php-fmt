@@ -13,7 +13,7 @@ if (!empty($argv[1])) {
     $waitFiles = scandir('./');
 }
 
-if (strtolower(PHP_OS) == 'WINNT') {
+if (strtolower(PHP_OS) == 'winnt') {
     $pwd = exec("chdir");
 } else {
     $pwd = exec("pwd");
