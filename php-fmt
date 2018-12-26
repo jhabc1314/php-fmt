@@ -14,7 +14,7 @@ if (!empty($argv[1])) {
 }
 
 if (strtolower(PHP_OS) == 'WINNT') {
-    $pwd = exec("dir");
+    $pwd = exec("chdir");
 } else {
     $pwd = exec("pwd");
 }
